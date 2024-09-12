@@ -1,0 +1,208 @@
+\documentclass{ctexart}
+\pagestyle{empty}
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+% 设置代码块样式
+\lstset{
+  numbers=none,
+  numberstyle=\tiny,
+  numbersep=.1em,
+  xleftmargin=0em,
+  backgroundcolor=\color{lightgray!50},
+  columns=fixed,
+  breakindent = 1em,
+  language=[LaTeX]TeX,
+  breaklines=true,
+  basicstyle=\ttfamily,
+  tabsize=1,
+}
+
+\begin{document}
+
+\title{Git 命令和 LaTeX 语法介绍}
+\author{郭路通  23020007032}
+\date{}
+\maketitle
+
+\section{Git 命令}
+以下是一些常用的 Git 命令：
+
+\begin{enumerate}[label=\arabic*.]
+\item \textbf{初始化仓库}:
+\begin{lstlisting}
+git init
+\end{lstlisting}
+初始化一个新的 Git 仓库。
+
+\item \textbf{添加文件}:
+\begin{lstlisting}
+git add <file>
+\end{lstlisting}
+将指定文件添加到暂存区。
+
+\item \textbf{提交更改}:
+\begin{lstlisting}
+git commit -m "<message>"
+\end{lstlisting}
+提交暂存区文件到仓库，并附上说明信息。
+
+\item \textbf{查看状态}:
+\begin{lstlisting}
+git status
+\end{lstlisting}
+显示当前仓库的状态。
+
+\item \textbf{查看日志}:
+\begin{lstlisting}
+git log
+\end{lstlisting}
+显示提交日志。
+
+\item \textbf{查看分支}:
+\begin{lstlisting}
+git branch
+\end{lstlisting}
+列出所有分支。
+
+\item \textbf{切换分支}:
+\begin{lstlisting}
+git checkout <branch>
+\end{lstlisting}
+切换到指定分支。
+
+\item \textbf{合并分支}:
+\begin{lstlisting}
+git merge <branch>
+\end{lstlisting}
+将指定分支的更改合并到当前分支。
+
+\item \textbf{克隆仓库}:
+\begin{lstlisting}
+git clone <repository>
+\end{lstlisting}
+克隆远程仓库到本地。
+
+\item \textbf{推送更改}:
+\begin{lstlisting}
+git push
+\end{lstlisting}
+推送本地仓库到远程仓库。
+
+\item \textbf{拉取更改}:
+\begin{lstlisting}
+git pull
+\end{lstlisting}
+从远程仓库拉取最新内容。
+\end{enumerate}
+
+\section{LaTeX 语法}
+以下是一些基本的 LaTeX 语法：
+
+\begin{enumerate}[label=\arabic*.]
+\item \textbf{文档类声明}:
+\begin{lstlisting}
+\documentclass{article}
+\end{lstlisting}
+定义文档类型。
+
+\item \textbf{导入宏包}:
+\begin{lstlisting}
+\usepackage{graphicx}
+\end{lstlisting}
+导入额外的宏包。
+
+\item \textbf{文档开始}:
+\begin{lstlisting}
+\begin{document}
+\end{lstlisting}
+标记文档内容的开始。
+
+\item \textbf{设置标题}:
+\begin{lstlisting}
+\title{Title}
+\end{lstlisting}
+定义文档标题。
+
+\item \textbf{设置作者}:
+\begin{lstlisting}
+\author{Author}
+\end{lstlisting}
+定义文档作者。
+
+\item \textbf{设置日期}:
+\begin{lstlisting}
+\date{\today}
+\end{lstlisting}
+定义文档日期。
+
+\item \textbf{生成标题}:
+\begin{lstlisting}
+\maketitle
+\end{lstlisting}
+生成文档的标题。
+
+\item \textbf{节标题}:
+\begin{lstlisting}
+\section{Introduction}
+\end{lstlisting}
+创建新的节。
+
+\item \textbf{无序列表}:
+\begin{lstlisting}
+\begin{itemize}
+  \item Item 1
+  \item Item 2
+\end{itemize}
+\end{lstlisting}
+创建无序列表。
+
+\item \textbf{有序列表}:
+\begin{lstlisting}
+\begin{enumerate}
+  \item First item
+  \item Second item
+\end{enumerate}
+\end{lstlisting}
+创建有序列表。
+
+\item \textbf{居中文本}:
+\begin{lstlisting}
+\begin{center}
+  Centered text
+\end{center}
+\end{lstlisting}
+将文本居中显示。
+
+\item \textbf{创建表格}:
+\begin{lstlisting}
+\begin{tabular}{ll}
+  Column1 & Column2 \\
+  Data1   & Data2
+\end{tabular}
+\end{lstlisting}
+创建一个简单的表格。
+
+\item \textbf{插入图片}:
+\begin{lstlisting}
+\includegraphics{image.png}
+\end{lstlisting}
+在文档中插入图片。
+\end{enumerate}
+
+\section{感悟}
+\begin{enumerate}
+    \item 
+通过学习和使用 Git 命令，我深刻体会到了版本控制对于软件开发和文档管理的重要性。Git 不仅是一个工具，更是现代协作开发的核心。它使得代码的提交、分支的管理和远程仓库的同步变得简单而高效。每一个命令，如 `git commit`、`git push` 和 `git pull`，都是团队协作中不可或缺的一部分，它们共同构成了项目开发的骨架。
+    \item 
+同时，LaTeX 语法的学习让我认识到了高质量文档排版的可能性。LaTeX 的强大之处在于其精确和灵活的排版系统，它能够生成从简单的文章到复杂的科学论文的各种文档。每一个环境和命令，如 section、begin{enumerate} 和 includegraphics，都是构建专业文档的基石。通过 LaTeX，我学会了如何将注意力集中在内容创作上，而不必担心格式和布局的问题。
+    \item 
+这些工具的掌握，不仅提升了我的技术能力，也增强了我的责任感和团队合作精神。它们教会了我如何更有效地管理我的工作，无论是代码还是文档，都能够保持整洁和有序。在未来的学习和工作中，我期待继续深化这些技能，并将其应用到更广泛的领域中。
+\end{enumerate}
+
+\section{github链接}
+\url{https://github.com/gleati/work}
+\end{document}

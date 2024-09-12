@@ -1,0 +1,224 @@
+\documentclass{ctexart}
+\pagestyle{empty}
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+% 设置代码块样式
+\lstset{
+  numbers=none,
+  numberstyle=\tiny,
+  numbersep=.1em,
+  xleftmargin=0em,
+  backgroundcolor=\color{lightgray!50},
+  columns=fixed,
+  breakindent = 1em,
+  language=bash,
+  breaklines=true,
+  basicstyle=\ttfamily,
+  tabsize=2,
+}
+
+\begin{document}
+
+\title{Vim 命令和 Shell 脚本命令介绍}
+\author{郭路通  23020007032}
+\date{}
+\maketitle
+
+\section{Vim 命令}
+以下是一些常用的 Vim 命令：
+
+\begin{enumerate}[label=\arabic*.]
+\item \textbf{打开文件}:
+\begin{lstlisting}
+vim <filename>
+\end{lstlisting}
+在 Vim 中打开一个文件。
+
+\item \textbf{进入插入模式}:
+\begin{lstlisting}
+i
+\end{lstlisting}
+进入插入模式以编辑文本。
+
+\item \textbf{保存并退出}:
+\begin{lstlisting}
+:wq
+\end{lstlisting}
+保存更改并退出 Vim。
+
+\item \textbf{只退出}:
+\begin{lstlisting}
+:q
+\end{lstlisting}
+如果未修改，则直接退出 Vim；如果有未保存的更改，使用 :q! 强制退出。
+
+\item \textbf{删除一行}:
+\begin{lstlisting}
+dd
+\end{lstlisting}
+删除光标所在行。
+
+\item \textbf{撤销操作}:
+\begin{lstlisting}
+u
+\end{lstlisting}
+撤销上一步操作。
+
+\item \textbf{重复操作}:
+\begin{lstlisting}
+.
+\end{lstlisting}
+重复最后一次更改。
+
+\item \textbf{搜索文本}:
+\begin{lstlisting}
+/<pattern>
+\end{lstlisting}
+搜索指定模式的文本。
+
+\item \textbf{替换文本}:
+\begin{lstlisting}
+:%s/old/new/g
+\end{lstlisting}
+全局替换文档中的文本（g 表示全局）。
+
+\item \textbf{分割窗口}:
+\begin{lstlisting}
+:sp <filename>
+\end{lstlisting}
+在当前窗口旁边打开另一个文件。
+\end{enumerate}
+
+\section{Shell 脚本命令}
+以下是一些复杂的 Shell 脚本示例：
+
+\begin{enumerate}[label=\arabic*.]
+\item \textbf{备份目录}:
+\begin{lstlisting}
+#!/bin/bash
+SRC_DIR=$1
+DEST_DIR=$2
+BACKUP_DATE=$(date +"%Y%m%d_%H%M%S")
+BACKUP_NAME="backup_$BACKUP_DATE.tar.gz"
+
+tar -czf "$DEST_DIR/$BACKUP_NAME" -C "$SRC_DIR" .
+echo "Backup created at $DEST_DIR/$BACKUP_NAME"
+\end{lstlisting}
+
+\item \textbf{检查文件是否为空}:
+\begin{lstlisting}
+#!/bin/bash
+FILE=$1
+if [ ! -s "$FILE" ]; then
+    echo "The file $FILE is empty."
+else
+    echo "The file $FILE is not empty."
+fi
+\end{lstlisting}
+
+\item \textbf{递归查找文件}:
+\begin{lstlisting}
+#!/bin/bash
+DIR=$1
+FILENAME=$2
+find "$DIR" -type f -name "$FILENAME"
+\end{lstlisting}
+
+\item \textbf{计算目录大小}:
+\begin{lstlisting}
+#!/bin/bash
+DIR=$1
+du -sh "$DIR"
+\end{lstlisting}
+
+\item \textbf{生成随机密码}:
+\begin{lstlisting}
+#!/bin/bash
+LENGTH=$1
+cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w "$LENGTH" | head -n 1
+\end{lstlisting}
+
+\item \textbf{检查网络连接}:
+\begin{lstlisting}
+#!/bin/bash
+HOST=$1
+if ping -c 1 "$HOST" > /dev/null; then
+    echo "Host $HOST is reachable."
+else
+    echo "Host $HOST is unreachable."
+fi
+\end{lstlisting}
+
+\item \textbf{批量重命名文件}:
+\begin{lstlisting}
+#!/bin/bash
+OLD_PREFIX=$1
+NEW_PREFIX=$2
+for FILE in "$OLD_PREFIX"*; do
+    if [ -f "$FILE" ]; then
+        NEW_NAME="${FILE//$OLD_PREFIX/$NEW_PREFIX}"
+        mv "$FILE" "$NEW_NAME"
+    fi
+done
+\end{lstlisting}
+
+\item \textbf{压缩文件}:
+\begin{lstlisting}
+#!/bin/bash
+FILE=$1
+tar -czf "${FILE}.tar.gz" "$FILE"
+echo "Compressed file ${FILE}.tar.gz"
+\end{lstlisting}
+
+\item \textbf{解压文件}:
+\begin{lstlisting}
+#!/bin/bash
+FILE=$1
+tar -xzf "$FILE"
+echo "Extracted files from $FILE"
+\end{lstlisting}
+
+\item \textbf{定时任务}:
+\begin{lstlisting}
+#!/bin/bash
+TASK="$1"
+while true; do
+    eval "$TASK"
+    sleep 60  # 每分钟执行一次
+done
+\end{lstlisting}
+
+\item \textbf{日志分析脚本}:
+\begin{lstlisting}
+#!/bin/bash
+LOG_FILE=$1
+grep "ERROR" "$LOG_FILE"
+\end{lstlisting}
+
+\item \textbf{文件比较}:
+\begin{lstlisting}
+#!/bin/bash
+FILE1=$1
+FILE2=$2
+if cmp -s "$FILE1" "$FILE2"; then
+    echo "Files are identical."
+else
+    echo "Files differ."
+fi
+\end{lstlisting}
+\end{enumerate}
+
+\section{感悟}
+\begin{enumerate}
+    \item 通过学习 Vim 命令，我认识到 Vim 是一个强大的文本编辑器，它允许我们以非常高效的方式进行文本编辑。熟练掌握 Vim 可以极大地提高编码速度和质量。
+    \item 学习 Shell 脚本编写使我能够自动化日常任务，简化了数据处理和系统管理的工作流程。Shell 脚本是连接系统各个部分的强大工具。
+    \item 这些技能的掌握不仅提高了个人效率，也加强了我在团队中的作用。我期待着将这些技能应用于实际项目中，解决更多的实际问题。
+\end{enumerate}
+
+\section{github链接}
+\url{https://github.com/gleati/work}
+\end{document}
